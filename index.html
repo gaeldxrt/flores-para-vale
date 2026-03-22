@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Vale y Madison 💛</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: linear-gradient(135deg, #fdfbfb 0%, #ffe066 100%);
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+    }
+
+    /* LUCES FLOTANTES DE FONDO */
+    .luz {
+        position: absolute;
+        background: radial-gradient(circle, rgba(255,215,0,0.8) 0%, rgba(255,215,0,0) 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: flotar 6s infinite ease-in-out alternate;
+        z-index: 0;
+    }
+
+    @keyframes flotar {
+        0% { transform: translateY(0) scale(1); opacity: 0.5; }
+        100% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+    }
+
+    /* PANTALLA DE INICIO PARA ACTIVAR AUDIO */
+    #pantalla-inicio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffe066;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 50;
+        transition: opacity 1s ease;
+    }
+
+    .btn-empezar {
+        background: #ffaa00;
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 1.5rem;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(255, 170, 0, 0.4);
+        animation: latido 1.5s infinite;
+        transition: transform 0.2s;
+    }
+
+    .btn-empezar:hover {
+        transform: scale(1.05);
+    }
+
+    /* RAMOS DE FLORES A LOS LADOS */
+    .ramo {
+        position: absolute;
+        bottom: -20px;
+        width: 350px;
+        z-index: 15;
+        pointer-events: none;
+        filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.2));
+    }
+
+    .ramo-izquierdo {
+        left: -50px;
+        transform: rotate(10deg);
+    }
+
+    .ramo-derecho {
+        right: -50px;
+        transform: rotate(-10deg) scaleX(-1);
+    }
+
+    /* CELULARES: Ajuste de ramos para pantallas pequeñas */
+    @media (max-width: 768px) {
+        .ramo { width: 200px; bottom: -10px; }
+        .ramo-izquierdo { left: -30px; }
+        .ramo-derecho { right: -30px; }
+    }
+
+    /* CARTA PRINCIPAL (GLASSMORPHISM) */
+    .carta {
+        display: none; 
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        padding: 40px 30px;
+        border-radius: 25px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 420px;
+        z-index: 10;
+        position: relative;
+    }
+
+    h1 {
+        font-family: 'Dancing Script', cursive;
+        font-size: 3.2rem;
+        color: #b36b00;
+        margin-top: 0;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    }
+
+    p {
+        color: #4a3f35;
+        font-size: 1.15rem;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        font-weight: 600;
+    }
+
+    /* CONTADOR */
+    #contador {
+        background: rgba(255, 215, 0, 0.3);
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        padding: 15px;
+        border-radius: 15px;
+        font-size: 1.05rem;
+        font-weight: bold;
+        color: #8a5a00;
+        margin-bottom: 15px;
+        box-shadow: inset 0 2px 5px rgba(255,255,255,0.5);
+    }
+
+    /* INDICADOR DE MÚSICA */
+    .reproductor {
+        font-size: 0.9rem;
+        color: #7a6040;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    /* FLORES CAYENDO ANIMADAS */
+    .flor-cayendo {
+        position: absolute;
+        z-index: 5;
+        user-select: none;
+        pointer-events: none;
+        animation: caer linear infinite;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    @keyframes caer {
+        0% { transform: translateY(-50px) rotate(0deg) scale(0.8); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(100vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    @keyframes latido {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+</style>
+</head>
+
+<body>
+
+<div id="pantalla-inicio">
+    <h1 style="font-size: 3.5rem; color: #d48800; margin-bottom: 30px;">Tengo algo para ustedes...</h1>
+    <button class="btn-empezar" onclick="iniciarRegalo()">Abrir regalo 💛</button>
+</div>
+
+<img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="ramo ramo-izquierdo" alt="Ramo">
+<img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="ramo ramo-derecho" alt="Ramo">
+
+<div class="carta" id="contenido-principal">
+    <h1>🌼 Vale y Madison 💛</h1>
+
+    <p>
+        Para ustedes, mi vida entera 🥺💛<br><br>
+        Vale… gracias por llegar a mi vida y cambiarlo todo.<br>
+        Y tú, Madison… aunque aún no llegas, ya eres lo más importante para mí 👶💛<br><br>
+        Hoy no puedo estar ahí, pero quería darles algo especial…<br>
+        flores amarillas para recordarles que siempre estoy con ustedes 🌻✨<br><br>
+        Las amo más de lo que las palabras pueden explicar 💛
+    </p>
+
+    <div id="contador"></div>
+
+    <div class="reproductor">
+        🎧 Sonando: 'Accidentally In Love' - Counting Crows
+    </div>
+</div>
+
+<audio id="musica" loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    // INICIAR REGALO
+    function iniciarRegalo() {
+        const pantallaInicio = document.getElementById("pantalla-inicio");
+        const contenido = document.getElementById("contenido-principal");
+        const musica = document.getElementById("musica");
+
+        musica.play();
+
+        pantallaInicio.style.opacity = "0";
+        setTimeout(() => {
+            pantallaInicio.style.display = "none";
+            contenido.style.display = "block";
+            
+            // Iniciar animaciones
+            setInterval(crearFlorCayendo, 300);
+            crearLuces(15);
+        }, 800);
+    }
+
+    // ANIMACIÓN DE FLORES CAYENDO
+    const emojisFlores = ["🌻", "🌼", "🌹", "✨", "💛", "🍃"];
+    
+    function crearFlorCayendo() {
+        const flor = document.createElement("div");
+        flor.classList.add("flor-cayendo");
+        flor.innerText = emojisFlores[Math.floor(Math.random() * emojisFlores.length)];
+
+        const size = Math.random() * 25 + 15;
+        flor.style.fontSize = size + "px";
+        flor.style.left = Math.random() * 100 + "vw";
+        flor.style.animationDuration = (4 + Math.random() * 6) + "s"; 
+
+        document.body.appendChild(flor);
+        setTimeout(() => flor.remove(), 10000);
+    }
+
+    // LUCES MÁGICAS DE FONDO
+    function crearLuces(cantidad) {
+        for(let i=0; i<cantidad; i++) {
+            let luz = document.createElement("div");
+            luz.classList.add("luz");
+            
+            let size = Math.random() * 60 + 20;
+            luz.style.width = size + "px";
+            luz.style.height = size + "px";
+            
+            luz.style.left = Math.random() * 100 + "vw";
+            luz.style.top = Math.random() * 100 + "vh";
+            
+            luz.style.animationDelay = (Math.random() * 5) + "s";
+            document.body.appendChild(luz);
+        }
+    }
+
+    // CONTADOR
+    const inicio = new Date();
+    inicio.setDate(inicio.getDate() - 336);
+
+    function actualizarContador() {
+        const ahora = new Date();
+        const diff = ahora - inicio;
+
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const horas = Math.floor(diff / (1000 * 60 * 60)) % 24;
+        const minutos = Math.floor(diff / (1000 * 60)) % 60;
+        const segundos = Math.floor(diff / 1000) % 60;
+
+        document.getElementById("contador").innerHTML =
+            `Desde que comenzó nuestra historia 💛<br>
+            ${dias} días ${horas} hrs ${minutos} min ${segundos} seg`;
+    }
+
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
+</script>
+
+</body>
+</html>
