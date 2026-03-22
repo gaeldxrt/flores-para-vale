@@ -1,111 +1,213 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Para Vale y Madison 💛</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-<style>
-    * { box-sizing: border-box; }
-    body {
-        margin: 0; overflow: hidden;
-        background: linear-gradient(135deg, #fdfbfb 0%, #ffe066 100%);
-        font-family: 'Quicksand', sans-serif;
-        display: flex; justify-content: center; align-items: center;
-        height: 100vh; position: relative;
-    }
-    #pantalla-inicio {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        background: #ffe066; display: flex; flex-direction: column;
-        justify-content: center; align-items: center; z-index: 50;
-        transition: opacity 1s ease;
-    }
-    .btn-empezar {
-        background: #ffaa00; color: white; border: none; padding: 15px 40px;
-        font-size: 1.5rem; font-weight: bold; border-radius: 50px;
-        cursor: pointer; box-shadow: 0 10px 20px rgba(255, 170, 0, 0.4);
-        animation: latido 1.5s infinite;
-    }
-    .ramo {
-        position: absolute; bottom: -15px; width: 190px;
-        z-index: 15; filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.2));
-        pointer-events: none;
-    }
-    @media (min-width: 768px) { .ramo { width: 380px; } }
-    .ramo-izquierdo { left: -30px; transform: rotate(10deg); }
-    .ramo-derecho { right: -30px; transform: rotate(-10deg) scaleX(-1); }
-    .carta {
-        display: none; background: rgba(255, 255, 255, 0.55);
-        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.7); padding: 30px 20px;
-        border-radius: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        width: 92%; max-width: 400px; z-index: 10; text-align: center;
-    }
-    h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #b36b00; margin-bottom: 15px; }
-    p { color: #4a3f35; font-size: 1.1rem; line-height: 1.6; font-weight: 600; }
-    #contador { background: rgba(255, 215, 0, 0.35); padding: 12px; border-radius: 15px; font-weight: bold; color: #8a5a00; margin: 15px 0; }
-    .reproductor { font-size: 0.85rem; color: #7a6040; font-style: italic; }
-    .flor-cayendo { position: absolute; z-index: 5; animation: caer linear infinite; }
-    @keyframes caer {
-        0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
-    }
-    @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para Vale y Madison 💛</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff9e6;
+            /* Fondo con ondas suaves como la imagen */
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(255, 224, 102, 0.5) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 224, 102, 0.3) 0px, transparent 50%),
+                linear-gradient(135deg, #fff9e6 0%, #fdf5d2 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Pantalla de Inicio */
+        #pantalla-inicio {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffe066;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease;
+        }
+
+        .btn-empezar {
+            background: #ffaa00;
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 170, 0, 0.5);
+            animation: latido 1.5s infinite;
+        }
+
+        /* Ramos de Flores (Estilo Pro) */
+        .ramo {
+            position: absolute;
+            bottom: -30px;
+            width: 250px; /* Tamaño grande como la imagen */
+            z-index: 20;
+            filter: drop-shadow(0px 15px 20px rgba(0,0,0,0.15));
+            pointer-events: none;
+            transition: width 0.5s;
+        }
+
+        .ramo-izquierdo { left: -50px; }
+        .ramo-derecho { right: -50px; transform: scaleX(-1); }
+
+        /* Ajuste para móviles */
+        @media (max-width: 768px) {
+            .ramo { width: 160px; bottom: -10px; }
+            .ramo-izquierdo { left: -20px; }
+            .ramo-derecho { right: -20px; }
+        }
+
+        /* Carta de Cristal (Glassmorphism Pro) */
+        .carta {
+            display: none;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            padding: 40px 30px;
+            border-radius: 35px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+            width: 90%;
+            max-width: 450px;
+            z-index: 10;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #8a5a00;
+            margin: 0 0 20px 0;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        p {
+            color: #5c4d3c;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        /* Contador con estilo Banner Dorado */
+        #contador {
+            background: rgba(255, 215, 0, 0.25);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            padding: 15px;
+            border-radius: 20px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #8a5a00;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.4);
+        }
+
+        .reproductor {
+            font-size: 0.9rem;
+            color: #7a6040;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Flores y partículas flotantes */
+        .particula {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            animation: caer linear infinite;
+        }
+
+        @keyframes caer {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    </style>
 </head>
 <body>
+
 <div id="pantalla-inicio">
-    <h1 style="color: #d48800;">Para mis niñas...</h1>
-    <button class="btn-empezar" onclick="iniciar()">Abrir regalo 💛</button>
+    <h1 style="color: #d48800; text-align: center; padding: 20px;">Tengo algo especial para ustedes... 🌻</h1>
+    <button class="btn-empezar" onclick="iniciarRegalo()">Ver sorpresa 💛</button>
 </div>
+
 <img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="ramo ramo-izquierdo">
 <img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="ramo ramo-derecho">
+
 <div class="carta" id="contenido">
-    <h1>🌼 Vale y Madison 💛</h1>
+    <h1>Vale y Madison 💛</h1>
     <p>
         Para ustedes, mi vida entera 🥺💛<br><br>
         Vale… gracias por llegar a mi vida y cambiarlo todo.<br>
-        Y tú, Madison… ya eres lo más importante para mí 👶💛<br><br>
-        Flores amarillas para recordarles que siempre estoy con ustedes 🌻✨
+        Y tú, Madison… aunque aún no llegas, ya eres lo más importante para mí 👶💛<br><br>
+        Flores amarillas para recordarles que siempre estoy con ustedes 🌻✨<br><br>
+        Las amo más de lo que las palabras pueden explicar 💛
     </p>
     <div id="contador"></div>
     <div class="reproductor">🎧 Sonando: 'Accidentally In Love'</div>
 </div>
+
 <audio id="musica" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
+
 <script>
-    function iniciar() {
+    function iniciarRegalo() {
         document.getElementById("musica").play();
         document.getElementById("pantalla-inicio").style.opacity = "0";
         setTimeout(() => {
             document.getElementById("pantalla-inicio").style.display = "none";
             document.getElementById("contenido").style.display = "block";
-            setInterval(crearFlor, 350);
+            // Generar flores y partículas doradas
+            setInterval(crearParticula, 300);
         }, 800);
     }
-    const flores = ["🌻", "🌼", "💛", "✨", "🌹"];
-    function crearFlor() {
-        const f = document.createElement("div");
-        f.classList.add("flor-cayendo");
-        f.innerText = flores[Math.floor(Math.random()*flores.length)];
-        f.style.left = Math.random() * 100 + "vw";
-        f.style.fontSize = (Math.random() * 25 + 15) + "px";
-        f.style.animationDuration = (Math.random() * 3 + 5) + "s";
-        document.body.appendChild(f);
-        setTimeout(() => f.remove(), 8000);
+
+    const elementos = ["🌻", "🌼", "💛", "✨", "🌹", "🍃"];
+    function crearParticula() {
+        const p = document.createElement("div");
+        p.classList.add("particula");
+        p.innerText = elementos[Math.floor(Math.random()*elementos.length)];
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.fontSize = (Math.random() * 20 + 15) + "px";
+        p.style.animationDuration = (Math.random() * 3 + 5) + "s";
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 8000);
     }
-    const inicio = new Date();
-    inicio.setDate(inicio.getDate() - 336);
-    function actualizar() {
-        const diff = new Date() - inicio;
+
+    const fechaInicio = new Date();
+    fechaInicio.setDate(fechaInicio.getDate() - 336);
+
+    function actualizarContador() {
+        const ahora = new Date();
+        const diff = ahora - fechaInicio;
         const d = Math.floor(diff / 86400000);
         const h = Math.floor(diff / 3600000) % 24;
         const m = Math.floor(diff / 60000) % 60;
         const s = Math.floor(diff / 1000) % 60;
-        document.getElementById("contador").innerHTML = `Desde que comenzó nuestra historia 💛<br>${d}d ${h}h ${m}m ${s}s`;
+        document.getElementById("contador").innerHTML = 
+            `Desde que comenzó nuestra historia 💛<br>${d}d ${h}h ${m}m ${s}s`;
     }
-    setInterval(actualizar, 1000);
-    actualizar();
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
 </script>
 </body>
 </html>
