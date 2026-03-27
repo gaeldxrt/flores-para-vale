@@ -10,12 +10,12 @@
         body {
             margin: 0;
             overflow: hidden;
-            background: #fff9e6;
-            /* Fondo con ondas doradas suaves */
+            background: #fdf5e6;
+            /* Fondo inspirado en la imagen: ondas doradas y cremas */
             background-image: 
-                radial-gradient(at 0% 0%, rgba(255, 224, 102, 0.4) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(255, 224, 102, 0.2) 0px, transparent 50%),
-                linear-gradient(135deg, #fff9e6 0%, #fdf5d2 100%);
+                radial-gradient(circle at 10% 20%, rgba(255, 235, 150, 0.6) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 220, 120, 0.5) 0%, transparent 50%),
+                linear-gradient(135deg, #fdf5e6 0%, #fae6b1 100%);
             font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
@@ -24,7 +24,7 @@
             position: relative;
         }
 
-        /* Pantalla de Inicio (Garantiza que la música suene) */
+        /* Pantalla de Inicio */
         #pantalla-inicio {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -38,48 +38,55 @@
         }
 
         .btn-empezar {
-            background: #ffaa00;
+            background: linear-gradient(135deg, #ffc800, #ffa600);
             color: white;
-            border: none;
+            border: 2px solid #fff;
             padding: 20px 50px;
             font-size: 1.6rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(255, 170, 0, 0.5);
+            box-shadow: 0 10px 20px rgba(255, 170, 0, 0.4);
             animation: latido 1.5s infinite;
         }
 
-        /* Ramos de Flores (Grandes y Pro) */
-        .ramo {
+        /* Creando Ramos Abundantes (Estilo Bouquet) */
+        .ramo-container {
             position: absolute;
-            bottom: -40px;
-            width: 280px;
+            bottom: -30px;
+            width: 320px;
+            height: 320px;
             z-index: 20;
-            filter: drop-shadow(0px 15px 25px rgba(0,0,0,0.15));
             pointer-events: none;
+            filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.25));
             animation: aparecerRamos 2s ease-out;
         }
+        .ramo-izquierdo { left: -80px; }
+        .ramo-derecho { right: -80px; transform: scaleX(-1); }
 
-        .ramo-izquierdo { left: -60px; }
-        .ramo-derecho { right: -60px; transform: scaleX(-1); }
+        .flor { position: absolute; }
+        .f1 { width: 220px; bottom: 20px; left: 10px; transform: rotate(-15deg); z-index: 3; }
+        .f2 { width: 180px; bottom: 80px; left: 80px; transform: rotate(25deg); z-index: 2; }
+        .f3 { width: 160px; bottom: 10px; left: 120px; transform: rotate(55deg); z-index: 1; }
 
         @media (max-width: 768px) {
-            .ramo { width: 180px; bottom: -15px; }
+            .ramo-container { width: 200px; height: 200px; bottom: -20px; }
             .ramo-izquierdo { left: -30px; }
             .ramo-derecho { right: -30px; }
+            .f1 { width: 140px; } .f2 { width: 110px; left: 50px; bottom: 50px; } .f3 { width: 100px; left: 70px; }
         }
 
-        /* Carta Glassmorphism (Cristal) */
+        /* Carta de Cristal Elegante (Como la imagen) */
         .carta {
             display: none;
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 255, 255, 0.6);
+            /* Blanco translúcido como en tu foto */
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 230, 150, 0.8);
             padding: 40px 30px;
-            border-radius: 40px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(180, 130, 0, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.8);
             width: 90%;
             max-width: 450px;
             z-index: 10;
@@ -87,66 +94,70 @@
             animation: flotarCarta 4s infinite ease-in-out;
         }
 
+        /* Textos Café/Dorado Oscuro */
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.2rem;
-            color: #8a5a00;
+            font-size: 3.5rem;
+            color: #664200;
             margin: 0 0 15px 0;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            text-shadow: 1px 1px 0px rgba(255,255,255,1);
         }
 
         p {
-            color: #5c4d3c;
+            color: #5c4514;
             font-size: 1.15rem;
-            line-height: 1.7;
+            line-height: 1.6;
             font-weight: 600;
             margin-bottom: 25px;
         }
 
-        /* Contador Estilo Elegante */
+        /* Contador con Borde y Degradado (Idéntico a la imagen) */
         #contador {
-            background: rgba(255, 215, 0, 0.2);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            padding: 18px;
-            border-radius: 25px;
-            font-size: 1.1rem;
+            background: linear-gradient(to right, rgba(255, 240, 180, 0.6), rgba(255, 220, 120, 0.6));
+            border: 1px solid rgba(200, 150, 0, 0.3);
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.05rem;
             font-weight: bold;
-            color: #8a5a00;
-            margin-bottom: 25px;
-            box-shadow: inset 0 2px 10px rgba(255,255,255,0.4);
+            color: #664200;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .reproductor {
             font-size: 0.9rem;
-            color: #7a6040;
-            font-style: italic;
+            color: #664200;
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        /* Animación de Flores Cayendo */
-        .petalo {
+        /* Partículas / Brillos flotantes */
+        .brillo {
             position: absolute;
             z-index: 5;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,215,0,0) 70%);
+            border-radius: 50%;
             pointer-events: none;
-            animation: caer linear infinite;
+            animation: subir linear infinite;
         }
 
-        @keyframes caer {
-            0% { transform: translateY(-100px) rotate(0deg) scale(0.5); opacity: 0; }
-            10% { opacity: 1; }
-            100% { transform: translateY(105vh) rotate(360deg) scale(1.2); opacity: 0; }
+        @keyframes subir {
+            0% { transform: translateY(105vh) scale(0.5); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
 
         @keyframes flotarCarta {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes aparecerRamos {
-            0% { transform: translateY(100px) scale(0.5); opacity: 0; }
+            0% { transform: translateY(100px) scale(0.8); opacity: 0; }
             100% { transform: translateY(0) scale(1); opacity: 1; }
         }
 
@@ -156,23 +167,34 @@
 <body>
 
 <div id="pantalla-inicio">
-    <h1 style="color: #d48800; text-align: center; padding: 20px;">Tengo una sorpresa para ustedes... 🌻</h1>
-    <button class="btn-empezar" onclick="iniciarRegalo()">Abrir con amor 💛</button>
+    <h1 style="color: #664200; text-align: center; padding: 20px;">Tengo una sorpresa para ustedes... 🌻</h1>
+    <button class="btn-empezar" onclick="iniciarRegalo()">Abrir regalo 💛</button>
 </div>
 
-<img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="ramo ramo-izquierdo">
-<img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="ramo ramo-derecho">
+<div class="ramo-container ramo-izquierdo">
+    <img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="flor f3">
+    <img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="flor f2">
+    <img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="flor f1">
+</div>
+
+<div class="ramo-container ramo-derecho">
+    <img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="flor f3">
+    <img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="flor f2">
+    <img src="https://cdn.pixabay.com/photo/2017/08/01/10/44/sunflower-2564295_1280.png" class="flor f1">
+</div>
 
 <div class="carta" id="contenido">
-    <h1>Vale y Madison 💛</h1>
+    <h1>Vale y Madison</h1>
     <p>
         Para ustedes, mi vida entera 🥺💛<br><br>
         Vale… gracias por llegar a mi vida y cambiarlo todo.<br>
         Y tú, Madison… aunque aún no llegas, ya eres lo más importante para mí 👶💛<br><br>
-        Flores amarillas para recordarles que siempre estoy con ustedes 🌻✨
+        Hoy no puedo estar ahí, pero quería darles algo especial...<br>
+        flores amarillas para recordarles que siempre estoy con ustedes 🌻✨<br><br>
+        Las amo más de lo que las palabras pueden explicar 💛
     </p>
     <div id="contador"></div>
-    <div class="reproductor">🎵 Escuchando: Accidentally In Love</div>
+    <div class="reproductor">🎧 Sonando: 'Accidentally In Love' - Counting Crows</div>
 </div>
 
 <audio id="musica" loop preload="auto">
@@ -185,28 +207,26 @@
         const inicio = document.getElementById("pantalla-inicio");
         const carta = document.getElementById("contenido");
 
-        // Intentar reproducir música
         audio.play().catch(e => console.log("Error de audio:", e));
 
         inicio.style.opacity = "0";
         setTimeout(() => {
             inicio.style.display = "none";
             carta.style.display = "block";
-            // Iniciar lluvia de flores intensiva
-            setInterval(crearPetalo, 250);
+            setInterval(crearBrillo, 400);
         }, 800);
     }
 
-    const figuras = ["🌻", "🌼", "💛", "✨", "🌹", "🏵️"];
-    function crearPetalo() {
-        const p = document.createElement("div");
-        p.classList.add("petalo");
-        p.innerText = figuras[Math.floor(Math.random() * figuras.length)];
-        p.style.left = Math.random() * 100 + "vw";
-        p.style.fontSize = (Math.random() * 25 + 15) + "px";
-        p.style.animationDuration = (Math.random() * 3 + 5) + "s";
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 8000);
+    function crearBrillo() {
+        const b = document.createElement("div");
+        b.classList.add("brillo");
+        const size = Math.random() * 8 + 4;
+        b.style.width = size + "px";
+        b.style.height = size + "px";
+        b.style.left = Math.random() * 100 + "vw";
+        b.style.animationDuration = (Math.random() * 4 + 4) + "s";
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 8000);
     }
 
     const fechaBase = new Date();
@@ -219,7 +239,7 @@
         const m = Math.floor(diff / 60000) % 60;
         const s = Math.floor(diff / 1000) % 60;
         document.getElementById("contador").innerHTML = 
-            `Desde que comenzó nuestra historia 💛<br>${d}d ${h}h ${m}m ${s}s`;
+            `Desde que comenzó nuestra historia 💛<br>${d} días ${h} hrs ${m} min ${s} seg`;
     }
     setInterval(actualizar, 1000);
     actualizar();
