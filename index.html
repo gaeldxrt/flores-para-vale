@@ -6,21 +6,30 @@
     <title>Para Vale y Madison 💛</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
             margin: 0;
             overflow: hidden;
-            background: #fdf5e6;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 235, 150, 0.6) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 220, 120, 0.5) 0%, transparent 50%),
-                linear-gradient(135deg, #fdf5e6 0%, #fae6b1 100%);
+            background: #fff9e6;
             font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             position: relative;
+        }
+
+        /* 1. FONDO DINÁMICO SHIMMER (EFECTO SEDA) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(255, 235, 150, 0.7) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(255, 220, 120, 0.5) 0px, transparent 50%),
+                linear-gradient(135deg, #fff9e6 0%, #fae6b1 100%);
+            z-index: 0;
+            animation: backgroundShimmer 10s infinite alternate;
         }
 
         /* Pantalla de Inicio (Garantiza música) */
@@ -32,151 +41,165 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 100;
-            transition: opacity 1s ease;
+            z-index: 1000;
+            transition: opacity 1s ease, visibility 1s;
         }
 
         .btn-empezar {
             background: linear-gradient(135deg, #ffc800, #ffa600);
             color: white;
-            border: 2px solid #fff;
-            padding: 20px 50px;
-            font-size: 1.6rem;
+            border: 3px solid #fff;
+            padding: 20px 60px;
+            font-size: 1.8rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 170, 0, 0.4);
+            box-shadow: 0 15px 35px rgba(255, 170, 0, 0.6);
             animation: latido 1.5s infinite;
+            transition: transform 0.2s;
         }
+        .btn-empezar:active { transform: scale(0.95); }
 
-        /* Creando Ramos Abundantes y GIGANTES para Móvil */
-        .ramo-container {
+        /* 2. RAMOS AGRUPADOS Y ORGÁNICOS (USANDO girasol.png) */
+        .bouquet-cluster {
             position: absolute;
-            bottom: -50px;
-            width: 450px;
-            height: 450px;
+            bottom: -20px;
             z-index: 20;
             pointer-events: none;
-            filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.2));
-            animation: aparecerRamos 2s ease-out;
+            filter: drop-shadow(0px 15px 20px rgba(0,0,0,0.2));
+            animation: aparecerRamos 2.5s ease-out;
+            display: flex;
+            align-items: flex-end;
         }
-        .ramo-izquierdo { left: -120px; }
-        .ramo-derecho { right: -120px; transform: scaleX(-1); }
+        .bouquet-left { left: -50px; }
+        .bouquet-right { right: -50px; transform: scaleX(-1); }
 
-        .flor { position: absolute; }
-        /* Posiciones Pro para dar volumen usando ramo.png */
-        .f1 { width: 300px; bottom: 30px; left: 20px; transform: rotate(-10deg); z-index: 3; }
-        .f2 { width: 250px; bottom: 100px; left: 100px; transform: rotate(20deg); z-index: 2; }
-        .f3 { width: 220px; bottom: 20px; left: 180px; transform: rotate(50deg); z-index: 1; }
+        .flower-asset { position: absolute; bottom: 0; }
+        /* Variaciones de tamaño y rotación para naturalidad */
+        .f-main { width: 320px; z-index: 3; transform: rotate(-5deg); left: 0; }
+        .f-back-1 { width: 260px; z-index: 1; transform: rotate(-25deg); left: 70px; bottom: 20px; opacity: 0.8; }
+        .f-back-2 { width: 240px; z-index: 2; transform: rotate(15deg); left: -40px; bottom: 10px; opacity: 0.9; }
 
-        /* Ajuste SÚPER PRO para teléfonos (Vertical) */
+        /* Ajuste para Móvil */
         @media (max-width: 768px) {
-            .ramo-container { width: 260px; height: 260px; bottom: -20px; }
-            .ramo-izquierdo { left: -60px; }
-            .ramo-derecho { right: -60px; }
-            .f1 { width: 190px; left: 10px; }
-            .f2 { width: 160px; left: 60px; bottom: 60px; }
-            .f3 { width: 140px; left: 100px; }
+            .bouquet-cluster { bottom: -10px; }
+            .bouquet-left { left: -30px; }
+            .bouquet-right { right: -30px; }
+            .f-main { width: 180px; }
+            .f-back-1 { width: 140px; left: 40px; }
+            .f-back-2 { width: 130px; left: -20px; }
         }
 
-        /* Carta de Cristal SÚPER BLANCA Y PREMIUM */
+        /* 3. CARTA DE CRISTAL ULTRA PULIDA (GLASSMORPHISM) */
         .carta {
             display: none;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 230, 150, 0.9);
-            padding: 45px 30px;
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(180, 130, 0, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.6);
-            width: 90%;
-            max-width: 460px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            padding: 50px 35px;
+            border-radius: 25px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1), inset 0 0 30px rgba(255, 255, 255, 0.5);
+            width: 92%;
+            max-width: 440px;
             z-index: 10;
             text-align: center;
-            animation: flotarCarta 4s infinite ease-in-out;
+            animation: flotarCarta 5s infinite ease-in-out;
+            border-bottom: 4px solid rgba(212, 175, 55, 0.3); /* Borde inferior dorado sutil */
         }
 
-        /* Textos Elegantes en Café Oscuro */
+        /* Reflejo de brillo pseudo-elemento */
+        .carta::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            pointer-events: none;
+            animation: glassShine 6s infinite;
+        }
+
+        /* 4. TIPOGRAFÍA Y COLORES PREMIUM */
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.8rem;
-            color: #5c4514;
-            margin: 0 0 15px 0;
-            text-shadow: 1px 1px 0px rgba(255,255,255,1);
+            font-size: 3.6rem;
+            color: #4a3f12; /* Café Sepia Oscuro */
+            margin: 0 0 20px 0;
+            animation: pulsatingText 3s infinite;
         }
 
         p {
-            color: #4a3f12;
+            color: #5c4514;
             font-size: 1.2rem;
-            line-height: 1.6;
+            line-height: 1.7;
             font-weight: 600;
             margin-bottom: 30px;
         }
 
-        /* Contador Premium con Borde Dorado */
+        /* Contador con Borde Dorado Pulido */
         #contador {
-            background: linear-gradient(to right, rgba(255, 240, 180, 0.7), rgba(255, 220, 120, 0.7));
-            border: 2px solid rgba(200, 150, 0, 0.4);
-            padding: 18px;
+            background: linear-gradient(to right, rgba(255, 248, 220, 0.8), rgba(255, 235, 150, 0.8));
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            padding: 20px;
             border-radius: 15px;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: bold;
-            color: #5c4514;
+            color: #4a3f12;
             margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
 
         .reproductor {
             font-size: 0.95rem;
-            color: #5c4514;
+            color: #7a6040;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            font-style: italic;
         }
 
-        /* Brillos Dorados Flotantes */
-        .brillo {
+        /* 5. PARTÍCULAS MÁGICAS AVANZADAS */
+        .particula {
             position: absolute;
             z-index: 5;
-            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,215,0,0) 70%);
-            border-radius: 50%;
             pointer-events: none;
-            animation: subir linear infinite;
+            animation: caerMágico linear infinite;
         }
 
-        /* Lluvia de flores amarillas */
-        .flor-cayendo {
-            position: absolute;
-            z-index: 6;
-            pointer-events: none;
-            animation: caer linear infinite;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+        /* ANIMACIONES AVANZADAS */
+        @keyframes backgroundShimmer {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
-        /* ANIMACIONES */
-        @keyframes subir {
-            0% { transform: translateY(105vh) scale(0.5); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
-
-        @keyframes caer {
-            0% { transform: translateY(-100px) rotate(0deg) scale(0.6); opacity: 0; }
-            10% { opacity: 1; }
-            100% { transform: translateY(105vh) rotate(360deg) scale(1.3); opacity: 0; }
+        @keyframes caerMágico {
+            0% { transform: translateY(-120px) rotate(0deg) translateX(0) scale(0.6); opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(400deg) translateX(30px) scale(1.3); opacity: 0; }
         }
 
         @keyframes flotarCarta {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(1deg); }
+            50% { transform: translateY(-18px) rotate(1deg); }
         }
 
         @keyframes aparecerRamos {
-            0% { transform: translateY(150px) scale(0.8); opacity: 0; }
+            0% { transform: translateY(150px) scale(0.9); opacity: 0; }
             100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        @keyframes pulsatingText {
+            0%, 100% { text-shadow: 0 0 5px rgba(212, 136, 0, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(212, 136, 0, 0.9); }
+        }
+
+        @keyframes glassShine {
+            0% { left: -150%; }
+            100% { left: 150%; }
         }
 
         @keyframes latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
@@ -185,20 +208,20 @@
 <body>
 
 <div id="pantalla-inicio">
-    <h1 style="color: #5c4514; text-align: center; padding: 20px;">Tengo una sorpresa para ustedes... 🌻</h1>
-    <button class="btn-empezar" onclick="iniciarRegalo()">Abrir regalo 💛</button>
+    <h1 style="color: #4a3f12; text-align: center; padding: 20px; font-family: 'Dancing Script';">Tengo algo mágico para ustedes... 🌻💖</h1>
+    <button class="btn-empezar" onclick="iniciarRegalo()">Abrir con amor 💛</button>
 </div>
 
-<div class="ramo-container ramo-izquierdo">
-    <img src="ramo.png" class="flor f3" alt="ramo">
-    <img src="ramo.png" class="flor f2" alt="ramo">
-    <img src="ramo.png" class="flor f1" alt="ramo">
+<div class="bouquet-cluster bouquet-left">
+    <img src="girasol.png" class="flower-asset f-back-2" alt="flor">
+    <img src="girasol.png" class="flower-asset f-back-1" alt="flor">
+    <img src="girasol.png" class="flower-asset f-main" alt="girasol principal">
 </div>
 
-<div class="ramo-container ramo-derecho">
-    <img src="ramo.png" class="flor f3" alt="ramo">
-    <img src="ramo.png" class="flor f2" alt="ramo">
-    <img src="ramo.png" class="flor f1" alt="ramo">
+<div class="bouquet-cluster bouquet-right">
+    <img src="girasol.png" class="flower-asset f-back-2" alt="flor">
+    <img src="girasol.png" class="flower-asset f-back-1" alt="flor">
+    <img src="girasol.png" class="flower-asset f-main" alt="girasol principal">
 </div>
 
 <div class="carta" id="contenido">
@@ -214,7 +237,7 @@
 
     <div id="contador"></div>
 
-    <div class="reproductor">🎧 Sonando: 'Accidentally In Love'</div>
+    <div class="reproductor">🎵 Escuchando: Accidentally In Love</div>
 </div>
 
 <audio id="musica" loop preload="auto">
@@ -231,38 +254,34 @@
 
         inicio.style.opacity = "0";
         setTimeout(() => {
-            inicio.style.display = "none";
+            inicio.style.visibility = "hidden";
             carta.style.display = "block";
-            setInterval(crearFlorCayendo, 250); 
-            setInterval(crearBrillo, 400); 
+            // Iniciar Lluvia de Partículas intensiva y variada
+            setInterval(crearParticula, 280); 
         }, 800);
     }
 
-    function crearBrillo() {
-        const b = document.createElement("div");
-        b.classList.add("brillo");
-        const size = Math.random() * 10 + 5;
-        b.style.width = size + "px";
-        b.style.height = size + "px";
-        b.style.left = Math.random() * 100 + "vw";
-        b.style.animationDuration = (Math.random() * 4 + 4) + "s";
-        document.body.appendChild(b);
-        setTimeout(() => b.remove(), 8000);
+    // LISTA DE PARTÍCULAS MÁGICAS
+    const elementosMagicos = ["🌻", "🌼", "🌹", "✨", "💛", "💖", "🍃"];
+    function crearParticula() {
+        const p = document.createElement("div");
+        p.classList.add("particula");
+        p.innerText = elementosMagicos[Math.floor(Math.random() * elementosMagicos.length)];
+        
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.fontSize = (Math.random() * 30 + 15) + "px";
+        // Variar duración para profundidad
+        p.style.animationDuration = (Math.random() * 3 + 5) + "s"; 
+        // Retraso aleatorio para naturalidad
+        p.style.animationDelay = (Math.random() * 2) + "s";
+        
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 8000);
     }
 
-    const emojisFlores = ["🌻", "🌼", "🌹", "✨", "💛", "🍃"];
-    function crearFlorCayendo() {
-        const f = document.createElement("div");
-        f.classList.add("flor-cayendo");
-        f.innerText = emojisFlores[Math.floor(Math.random() * emojisFlores.length)];
-        f.style.left = Math.random() * 100 + "vw";
-        f.style.fontSize = (Math.random() * 30 + 15) + "px";
-        f.style.animationDuration = (Math.random() * 3 + 5) + "s"; 
-        document.body.appendChild(f);
-        setTimeout(() => f.remove(), 8000);
-    }
-
+    // CONTADOR: AJUSTADO A EXACTAMENTE 341 DÍAS PARA HOY
     const fechaBase = new Date();
+    // Le restamos 341 días a la fecha actual
     fechaBase.setDate(fechaBase.getDate() - 341);
 
     function actualizar() {
