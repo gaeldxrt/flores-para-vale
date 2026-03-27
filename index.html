@@ -23,6 +23,7 @@
             position: relative;
         }
 
+        /* Pantalla de Inicio (Garantiza música) */
         #pantalla-inicio {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -48,94 +49,113 @@
             animation: latido 1.5s infinite;
         }
 
+        /* Creando Ramos Abundantes y GIGANTES para Móvil */
         .ramo-container {
             position: absolute;
-            bottom: -30px;
-            width: 320px;
-            height: 320px;
+            bottom: -50px;
+            width: 450px;
+            height: 450px;
             z-index: 20;
             pointer-events: none;
-            filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.25));
+            filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.2));
             animation: aparecerRamos 2s ease-out;
         }
-        .ramo-izquierdo { left: -80px; }
-        .ramo-derecho { right: -80px; transform: scaleX(-1); }
+        .ramo-izquierdo { left: -120px; }
+        .ramo-derecho { right: -120px; transform: scaleX(-1); }
 
         .flor { position: absolute; }
-        .f1 { width: 220px; bottom: 20px; left: 10px; transform: rotate(-15deg); z-index: 3; }
-        .f2 { width: 180px; bottom: 80px; left: 80px; transform: rotate(25deg); z-index: 2; }
-        .f3 { width: 160px; bottom: 10px; left: 120px; transform: rotate(55deg); z-index: 1; }
+        /* Posiciones Pro para dar volumen usando ramo.png */
+        .f1 { width: 300px; bottom: 30px; left: 20px; transform: rotate(-10deg); z-index: 3; }
+        .f2 { width: 250px; bottom: 100px; left: 100px; transform: rotate(20deg); z-index: 2; }
+        .f3 { width: 220px; bottom: 20px; left: 180px; transform: rotate(50deg); z-index: 1; }
 
+        /* Ajuste SÚPER PRO para teléfonos (Vertical) */
         @media (max-width: 768px) {
-            .ramo-container { width: 200px; height: 200px; bottom: -20px; }
-            .ramo-izquierdo { left: -30px; }
-            .ramo-derecho { right: -30px; }
-            .f1 { width: 140px; } .f2 { width: 110px; left: 50px; bottom: 50px; } .f3 { width: 100px; left: 70px; }
+            .ramo-container { width: 260px; height: 260px; bottom: -20px; }
+            .ramo-izquierdo { left: -60px; }
+            .ramo-derecho { right: -60px; }
+            .f1 { width: 190px; left: 10px; }
+            .f2 { width: 160px; left: 60px; bottom: 60px; }
+            .f3 { width: 140px; left: 100px; }
         }
 
+        /* Carta de Cristal SÚPER BLANCA Y PREMIUM */
         .carta {
             display: none;
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 230, 150, 0.8);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(180, 130, 0, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 230, 150, 0.9);
+            padding: 45px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(180, 130, 0, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.6);
             width: 90%;
-            max-width: 450px;
+            max-width: 460px;
             z-index: 10;
             text-align: center;
             animation: flotarCarta 4s infinite ease-in-out;
         }
 
+        /* Textos Elegantes en Café Oscuro */
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #664200;
+            font-size: 3.8rem;
+            color: #5c4514;
             margin: 0 0 15px 0;
             text-shadow: 1px 1px 0px rgba(255,255,255,1);
         }
 
         p {
-            color: #5c4514;
-            font-size: 1.15rem;
+            color: #4a3f12;
+            font-size: 1.2rem;
             line-height: 1.6;
             font-weight: 600;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
+        /* Contador Premium con Borde Dorado */
         #contador {
-            background: linear-gradient(to right, rgba(255, 240, 180, 0.6), rgba(255, 220, 120, 0.6));
-            border: 1px solid rgba(200, 150, 0, 0.3);
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 1.05rem;
+            background: linear-gradient(to right, rgba(255, 240, 180, 0.7), rgba(255, 220, 120, 0.7));
+            border: 2px solid rgba(200, 150, 0, 0.4);
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 1.1rem;
             font-weight: bold;
-            color: #664200;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            color: #5c4514;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .reproductor {
-            font-size: 0.9rem;
-            color: #664200;
+            font-size: 0.95rem;
+            color: #5c4514;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
 
+        /* Brillos Dorados Flotantes */
         .brillo {
             position: absolute;
             z-index: 5;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,215,0,0) 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,215,0,0) 70%);
             border-radius: 50%;
             pointer-events: none;
             animation: subir linear infinite;
         }
 
+        /* Lluvia de flores amarillas */
+        .flor-cayendo {
+            position: absolute;
+            z-index: 6;
+            pointer-events: none;
+            animation: caer linear infinite;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+        }
+
+        /* ANIMACIONES */
         @keyframes subir {
             0% { transform: translateY(105vh) scale(0.5); opacity: 0; }
             20% { opacity: 1; }
@@ -143,13 +163,19 @@
             100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
 
+        @keyframes caer {
+            0% { transform: translateY(-100px) rotate(0deg) scale(0.6); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg) scale(1.3); opacity: 0; }
+        }
+
         @keyframes flotarCarta {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
         }
 
         @keyframes aparecerRamos {
-            0% { transform: translateY(100px) scale(0.8); opacity: 0; }
+            0% { transform: translateY(150px) scale(0.8); opacity: 0; }
             100% { transform: translateY(0) scale(1); opacity: 1; }
         }
 
@@ -159,34 +185,36 @@
 <body>
 
 <div id="pantalla-inicio">
-    <h1 style="color: #664200; text-align: center; padding: 20px;">Tengo una sorpresa para ustedes... 🌻</h1>
+    <h1 style="color: #5c4514; text-align: center; padding: 20px;">Tengo una sorpresa para ustedes... 🌻</h1>
     <button class="btn-empezar" onclick="iniciarRegalo()">Abrir regalo 💛</button>
 </div>
 
 <div class="ramo-container ramo-izquierdo">
-    <img src="girasol.png" class="flor f3">
-    <img src="girasol.png" class="flor f2">
-    <img src="girasol.png" class="flor f1">
+    <img src="ramo.png" class="flor f3" alt="ramo">
+    <img src="ramo.png" class="flor f2" alt="ramo">
+    <img src="ramo.png" class="flor f1" alt="ramo">
 </div>
 
 <div class="ramo-container ramo-derecho">
-    <img src="girasol.png" class="flor f3">
-    <img src="girasol.png" class="flor f2">
-    <img src="girasol.png" class="flor f1">
+    <img src="ramo.png" class="flor f3" alt="ramo">
+    <img src="ramo.png" class="flor f2" alt="ramo">
+    <img src="ramo.png" class="flor f1" alt="ramo">
 </div>
 
 <div class="carta" id="contenido">
-    <h1>Vale y Madison</h1>
+    <h1>Vale y Madison 💛</h1>
     <p>
         Para ustedes, mi vida entera 🥺💛<br><br>
         Vale… gracias por llegar a mi vida y cambiarlo todo.<br>
         Y tú, Madison… aunque aún no llegas, ya eres lo más importante para mí 👶💛<br><br>
-        Hoy no puedo estar ahí, pero quería darles algo especial...<br>
+        Hoy quería darles algo especial...<br>
         flores amarillas para recordarles que siempre estoy con ustedes 🌻✨<br><br>
         Las amo más de lo que las palabras pueden explicar 💛
     </p>
+
     <div id="contador"></div>
-    <div class="reproductor">🎧 Sonando: 'Accidentally In Love' - Counting Crows</div>
+
+    <div class="reproductor">🎧 Sonando: 'Accidentally In Love'</div>
 </div>
 
 <audio id="musica" loop preload="auto">
@@ -205,14 +233,15 @@
         setTimeout(() => {
             inicio.style.display = "none";
             carta.style.display = "block";
-            setInterval(crearBrillo, 400);
+            setInterval(crearFlorCayendo, 250); 
+            setInterval(crearBrillo, 400); 
         }, 800);
     }
 
     function crearBrillo() {
         const b = document.createElement("div");
         b.classList.add("brillo");
-        const size = Math.random() * 8 + 4;
+        const size = Math.random() * 10 + 5;
         b.style.width = size + "px";
         b.style.height = size + "px";
         b.style.left = Math.random() * 100 + "vw";
@@ -221,8 +250,20 @@
         setTimeout(() => b.remove(), 8000);
     }
 
+    const emojisFlores = ["🌻", "🌼", "🌹", "✨", "💛", "🍃"];
+    function crearFlorCayendo() {
+        const f = document.createElement("div");
+        f.classList.add("flor-cayendo");
+        f.innerText = emojisFlores[Math.floor(Math.random() * emojisFlores.length)];
+        f.style.left = Math.random() * 100 + "vw";
+        f.style.fontSize = (Math.random() * 30 + 15) + "px";
+        f.style.animationDuration = (Math.random() * 3 + 5) + "s"; 
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 8000);
+    }
+
     const fechaBase = new Date();
-    fechaBase.setDate(fechaBase.getDate() - 336);
+    fechaBase.setDate(fechaBase.getDate() - 341);
 
     function actualizar() {
         const diff = new Date() - fechaBase;
